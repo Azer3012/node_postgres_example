@@ -35,4 +35,23 @@ app.post('/users',async(req,res)=>{
     res.status(201).send(user)
 })
 
+app.post('/departments',async(req,res)=>{
+    const deparments=await Department.create(req.body,{
+        fields:["name"]
+    })
+
+    res.status(201).send(deparments)
+})
+
+app.get('/products',async(req,res)=>{
+    const products=await Product.findAll()
+    res.send(products)
+})
+app.post('/products',async(req,res)=>{
+    const products=await Product.create(req.body,{
+        fields:["name","price","weight"]
+    })
+   
+})
+
 app.listen(8080,()=>console.log('listening app'))
